@@ -24,37 +24,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
 </head>
-
 <body>
 <?php require 'header.php'?>
     <div class = "text-center" style="margin-bottom:60px;"><p style="font-size:50px;">COMMUNITY</p></div>
         <div class="text-center">
             <div style="margin-bottom: 40px;">
-                <img src="img/COMMUNITY/sample2.jpg" alt="" width="700" height="auto"></img>
+            <?php session_start();?>
+                <img src="<?php echo $_SESSION['img'] ?>" alt="" width="650" height="500"></img>
             </div>
             <p style="font-size: 34px;">着用アイテム</p>
-                <div class="row" style="margin-bottom:36px;">
-                    <div class="col-4 col-sm-4">
-                        <img src="img/AKIEDA/akiedabags.jpg" width="250" height="350">
-                        <h6>AKIEDA bags</h6>
-                        <p>￥7,480</p>
-                    </div>
-                    <div class="col-4 col-sm-4">
-                        <img src="img/AKIEDA/akiedajacket.jpg" width="250" height="350">
-                        <h6>AKIEDA jacket</h6>
-                        <p>￥44,000</p>
-                    </div>
-                    <div class="col-4 col-sm-4">
-                        <img src="img/AKIEDA/akiedashoes.jpg" width="250" height="350">
-                        <h6>AKIEDA shoes</h6>
-                        <p>￥19,800</p>
-                    </div>
-                </div>
+            <div class="row">
+            <?php
+            $pdo = new PDO('mysql:host=localhost;dbname=teamadb;charset=utf8','webuser','abccsd2');
+            $count = 0;
+            for($i = 0; $i < count($_SESSION['item']); $i++){
+                $sql = "SELECT * FROM items WHERE item_id=?";
+                $ps = $pdo->prepare($sql);
+                $ps->bindValue(1,$_SESSION['item'][$i],PDO::PARAM_STR);
+                $ps->execute();
+                foreach($ps->fetchAll() as $row){
+            ?>
+            <div class="col-4 col-sm-4">
+                <img src="<?php echo $row['item_image'] ?>" width="250" height="350">
+                <h6><?php echo $row['item_name'] ?></h6>
+                <p><?php echo "￥".number_format($row['item_money']);?><br><br></p>
+            </div>
+        <?php }} ?>
                 <div class="link" style="margin-bottom:100px">
-                    <textarea cols="100" rows="10">
-                    </textarea><br><br>
+                    <textarea readonly cols="100" rows="10"><?php echo $_SESSION['txt'];?></textarea><br><br>
                     <a href="toukou.php">←修正する</a>　　　　　　　　　　　　　　　　　　　　
-                    <a href="toukou3.php">投稿完了する→</a>
+                    <a href="toukouins.php">投稿完了する→</a>
                     </form>
                 </div>
         </div>

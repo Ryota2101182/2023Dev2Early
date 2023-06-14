@@ -177,7 +177,7 @@ SP
         	<div class="content">
 				<div class="list">
                 	<div class="list-item">
-                    	<div class="subtext link"><a href="toukou.php">投稿する⇨</a></div>
+                    	<div class="subtext link"><a href="session_reset.php">投稿する⇨</a></div>
                 	</div>
                 	<div class="list-item">
                     	<div class="subtext link"><a href="minnanotoukou.php">みんなの投稿⇨</a></div>
