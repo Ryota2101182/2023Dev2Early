@@ -20,10 +20,21 @@ p{
 </head>
 <body>
 <?php require_once 'header.php'?>
+<?php
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=teamadb;charset=utf8','webuser','abccsd2');
+$searchpost = "SELECT * FROM post ORDER BY post_date DESC LIMIT 0,1";
+$ps = $pdo->prepare($searchpost);
+$ps->execute();
+foreach($ps->fetchAll() as $row){
+}
+?>
     <div class = "text-center" style="margin-top:30px; margin-bottom:150px;"><p style="font-size:50px;">COMMUNITY</p></div>
     <p style="font-size:50px;">投稿完了しました！</p>
     <div class="text-center link" style="margin-top:16px;">
-        <a href="syousaikanri.php"><p>投稿を見る⇨</p></a>
+    <form action="syousaikanri.php" method="post">
+        <input type="hidden" name="postid" value=<?php echo $row['post_id']?>>
+        <input type="submit" class="btn-submit" value="投稿を見る">
     </div>
 </body>
 </html>

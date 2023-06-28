@@ -8,7 +8,7 @@ $ps->bindValue(2,nl2br($_SESSION['txt']),PDO::PARAM_STR);
 $ps->bindValue(3,$_SESSION['img'],PDO::PARAM_STR);
 $ps->execute();
 
-$searchpost = "SELECT * FROM post ORDER BY post_date DESC LIMIT 0,1";
+$searchpost = "SELECT * FROM post ORDER BY post_id DESC LIMIT 0,1";
 $ps = $pdo->prepare($searchpost);
 $ps->execute();
 foreach($ps->fetchAll() as $row){

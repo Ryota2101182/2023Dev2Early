@@ -9,12 +9,14 @@ if(!isset($_SESSION['item'][0])==true && !isset($_SESSION['img'])==true && empty
 <?php }else{
         $_SESSION['txt'] = $_POST['txt'];
         header('Location: toukou2.php');
+        exit();
 }
 if(!isset($_SESSION['img'])==true){
 ?>
     <script type='text/javascript'>
         alert('画像をアップロードしてください');
         location.href = 'toukou.php'
+        exit();
     </script> 
 <?php }else{
     $_SESSION['txt'] = $_POST['txt'];
@@ -29,5 +31,6 @@ if(!isset($_SESSION['item'][0])==true){
 <?php }else{
         $_SESSION['txt'] = $_POST['txt'];
         header('Location: toukou2.php');
+        exit();
     }
 ?>

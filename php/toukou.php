@@ -68,7 +68,7 @@ img {
             <section class="form-container">
                 <form action="?" method="post" enctype="multipart/form-data">
                     <label>
-                        <input type="file" name="upload_image" id="selectImage">ファイルの選択
+                        <input type="file" name="upload_image" id="selectImage" accept="image/*">ファイルの選択
                     </label>
             </section>
             </main>
@@ -125,14 +125,17 @@ img {
                     bottoms:○○<br>
                     春に向けてのコーデを組みました！
             </p>
-            <?php
-            if(empty($_SESSION['txt'])){ ?>
-                <textarea cols="100" rows="10" name="txt"></textarea><br><br>
-            <?php }else{ ?>
-                <textarea cols="100" rows="10" name="txt"><?php echo $_SESSION['txt'];?></textarea><br><br>
-            <?php } ?>
-                <input type="submit" class="btn-submit" value="投稿内容を確認する→" name="post" formaction="txtins.php">
-            </form>
+        <div class="row">
+            <div class="col-12 col-sm-12">
+                <?php
+                if(empty($_SESSION['txt'])){ ?>
+                    <textarea cols="100" rows="10" name="txt"></textarea><br><br>
+                <?php }else{ ?>
+                    <textarea cols="100" rows="10" name="txt"><?php echo $_SESSION['txt'];?></textarea><br><br>
+                <?php } ?>
+                    <input type="submit" class="btn-submit" value="投稿内容を確認する→" name="post" formaction="txtins.php">
+                </form>
+            </div>
         </div>
         <section>
             <div class="link" style="margin-left: -1000px; margin-bottom: 100px;">
